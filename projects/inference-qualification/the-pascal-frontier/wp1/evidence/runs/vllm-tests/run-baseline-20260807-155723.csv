@@ -1,0 +1,7 @@
+sample,temp_c,power_w,gpu_util_pct,memory_used_mib
+1,35.00,36.49,0.00,32404.00
+Initial GPU baseline: sample 1/5 | temp 35.0 C | power 36.5 W | util 0.0% | VRAM 32404 MiB2,35.00,36.50,0.00,32404.00
+Initial GPU baseline: sample 2/5 | temp 35.0 C | power 36.5 W | util 0.0% | VRAM 32404 MiB3,35.00,36.49,0.00,32404.00
+Initial GPU baseline: sample 3/5 | temp 35.0 C | power 36.5 W | util 0.0% | VRAM 32404 MiB4,35.00,36.49,0.00,32404.00
+Initial GPU baseline: sample 4/5 | temp 35.0 C | power 36.5 W | util 0.0% | VRAM 32404 MiB5,35.00,36.50,0.00,32404.00
+Initial GPU baseline: sample 5/5 | temp 35.0 C | power 36.5 W | util 0.0% | VRAM 32404 MiB

@@ -1,0 +1,4 @@
+lane	vllm	torch	init_s	gen_s	output_tokens	requests_per_s	output_tokens_per_s	result
+pds-v100-vllm-019	0.19.1.dev0+g2a69949bd.d20260807	2.10.0+cu126	stress	11.65	4.6937	320	40960	68.18	8726.68	PASS
+pds-v100-vllm-021	0.21.1.dev0+gad7125a43.d20260807	2.11.0+cu126	stress	13.26	4.8109	320	40960	66.52	8513.96	PASS
+pds-v100-vllm-023	0.23.1.dev0+g0fc695fc6.d20260807	2.11.0+cu126	stress	14.05	4.8604	320	40960	65.84	8427.37	PASS

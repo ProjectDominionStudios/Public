@@ -1,0 +1,24 @@
+{
+  "status": "PASS",
+  "level": "standard",
+  "model": "facebook/opt-125m",
+  "python": "3.12.3",
+  "pytorch": "2.10.0+cu126",
+  "pytorch_cuda": "12.6",
+  "vllm": "0.19.1.dev0+g2a69949bd.d20260807",
+  "attention_backend": "TRITON_ATTN",
+  "requests_total": 48,
+  "input_tokens_total": 546,
+  "output_tokens_total": 3072,
+  "generation_seconds_total": 1.841096,
+  "gpu_name": "Tesla PG500-216",
+  "gpu_capability": [
+    7,
+    0
+  ],
+  "engine_init_seconds": 11.762438,
+  "requests_per_second": 26.0714,
+  "output_tokens_per_second": 1668.5713,
+  "first_round_seconds": 1.023226,
+  "last_round_seconds": 0.402426
+}

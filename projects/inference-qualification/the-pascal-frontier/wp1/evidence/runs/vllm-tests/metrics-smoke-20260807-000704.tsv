@@ -1,0 +1,4 @@
+lane	vllm	torch	level	init_s	gen_s	requests	output_tokens	requests_per_s	output_tokens_per_s	peak_temp_c	avg_temp_c	peak_fan_pct	peak_power_w	avg_power_w	avg_gpu_util_pct	peak_gpu_util_pct	joules_per_1k_output_tokens	result
+pds-v100-vllm-019	0.19.1.dev0+g2a69949bd.d20260807	2.10.0+cu126	stress	11.90	10.5994	1280	163840	120.76	15457.41	39.0	35.3	0.0	104.7	52.4	31.5	100.0	3.39	PASS
+pds-v100-vllm-021	0.21.1.dev0+gad7125a43.d20260807	2.11.0+cu126	stress	13.20	11.2711	1280	163840	113.56	14536.30	40.0	37.1	0.0	98.8	48.7	22.9	88.0	3.35	PASS
+pds-v100-vllm-023	0.23.1.dev0+g0fc695fc6.d20260807	2.11.0+cu126	stress	14.19	10.7357	1280	163840	119.23	15261.19	42.0	39.1	0.0	90.5	54.3	20.7	87.0	3.56	PASS

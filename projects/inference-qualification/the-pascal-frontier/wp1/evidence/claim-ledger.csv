@@ -1,0 +1,7 @@
+claim_id,claim,class,evidence_id,public_evidence_locator,confidence
+C-WP1-001,Modern vLLM lanes generated non-empty output on SM70,Observed,E-VLLM-SMOKE-XVER,evidence/runs/vllm-tests/summary-20260807-032332.txt,HIGH
+C-WP1-002,Qwen2.5-14B cross-version workload completed 250 of 250 requests in each tested vLLM lane,Observed,E-VLLM-14-XVER,evidence/runs/vllm-tests/summary-20260807-032332.txt,HIGH
+C-WP1-003,Qwen2.5-32B GGUF completed 40 of 40 requests in the tested vLLM .023 lane,Observed,E-VLLM-32-GGUF,evidence/runs/vllm-tests/summary-20260807-160833.txt,HIGH
+C-WP1-004,llama.cpp completed the 35B-class MoE workload at 8K context,Observed,E-LLAMA-35-8K,evidence/runs/summary-20260807-203526.txt,HIGH
+C-WP1-005,The 35B vLLM result describes a tested software/model-loading boundary rather than a demonstrated V100 capability limit,Conclusion,E-INTERPRET-35,evidence/runs/summary-20260807-191723.txt; evidence/runs/summary-20260807-203526.txt,HIGH
+C-WP1-006,Lower average power on the 35B MoE run proves superior operational efficiency,Hypothesis,H-LIFECYCLE-01,not established,OPEN

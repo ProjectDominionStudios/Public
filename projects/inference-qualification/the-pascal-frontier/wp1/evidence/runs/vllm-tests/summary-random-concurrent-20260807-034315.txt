@@ -1,0 +1,12 @@
+PDS V100 vLLM random-concurrent summary
+Started: 2026-08-07T03:43:15-07:00
+Model: Qwen/Qwen2.5-14B-Instruct
+Baseline/cooldown: 5 samples x 1s; ready <= initial + 2 C; timeout 300s
+Heartbeat: 5s | client-start timeout: 30s
+Lanes: 023
+
+Lane	Result	Detail	Log
+pds-v100-vllm-023	PASS	concurrent users=8 requests/user=5	/home/<USER>/build/v100/logs/vllm-tests/pds-v100-vllm-023-concurrent-20260807-034319.log
+
+Finished: 2026-08-07T03:45:31-07:00
+Failures: 0

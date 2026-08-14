@@ -52,9 +52,15 @@ It is to establish reproducible evidence for:
 
 > **How well does this model and inference-engine combination perform on this hardware for a defined workload?**
 
+## Publications
+
+- [The Pascal Frontier — Whitepaper #1](the-pascal-frontier/wp1/): vLLM vs.
+  llama.cpp on NVIDIA V100 / Volta / SM70, with public evidence and provenance.
+
 ## Documentation
 
-A complete proof of concept is currently being prepared.
+The first complete proof of concept is now published. Additional whitepapers
+and supporting evidence will be released after their own Founder review gates.
 
 Planned publication includes:
 
@@ -73,9 +79,10 @@ Planned publication includes:
 
 ## Status
 
-🚧 **Documentation in progress**
+✅ **Whitepaper #1 published**
 
-Initial benchmark data has been collected. Detailed results and supporting evidence will be published as they are reviewed and documented.
+Additional benchmark work remains active and will be published as it is
+reviewed and approved.
 
 ---
 

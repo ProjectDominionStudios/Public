@@ -32,11 +32,15 @@ Initial model testing includes:
 - Qwen2.5-32B-Instruct
 - Qwen3.6-35B-A3B / Hermes Genesis V7
 
-The documented proof of concept, benchmark methodology, reproducible configurations, results, graphs, build notes, failures, and lessons learned are being prepared for publication.
+The first documented proof of concept, benchmark methodology, reproducible
+configurations, results, build notes, failures, and lessons learned are now
+published as **The Pascal Frontier — Whitepaper #1**.
 
 See:
 
 [`projects/inference-qualification`](projects/inference-qualification)
+
+Direct publication: [`The Pascal Frontier — Whitepaper #1`](projects/inference-qualification/the-pascal-frontier/wp1/)
 
 ## About Project Dominion Studios
 
@@ -46,9 +50,7 @@ This repository represents work intentionally approved for public release.
 
 ## Status
 
-🚧 **Active development**
-
-Documentation and benchmark evidence are currently being prepared.
+✅ **Whitepaper #1 published; active development continues**
 
 ---
 

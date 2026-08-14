@@ -1,0 +1,11 @@
+PDS V100 vLLM smoke-test summary
+Started: 2026-08-06T19:06:08-07:00
+Model: facebook/opt-125m
+Lanes: 019 021
+
+Lane	Result	Detail	Log
+pds-v100-vllm-019	PASS	completed	/home/<USER>/build/v100/logs/smoke-tests/pds-v100-vllm-019-20260806-190609.log
+pds-v100-vllm-021	PASS	completed	/home/<USER>/build/v100/logs/smoke-tests/pds-v100-vllm-021-20260806-190627.log
+
+Finished: 2026-08-06T19:06:50-07:00
+Failures: 0

@@ -1,0 +1,3 @@
+version	lane	level	status	vllm	pytorch	init_s	gen_s	requests	output_tokens	req_s	out_tok_s	gpu_avg_pct	gpu_max_pct	peak_vram_mib	peak_power_w	peak_temp_c	gpu_release	log
+0.19.0	pds-v100-vllm-019	standard	PASS	0.19.1.dev0+g2a69949bd.d20260807	2.10.0+cu126	11.762438	1.841096	48	3072	26.0714	1668.5713	6.333	100.0	26334.0	80.55	34.0	PASS	/home/<USER>/build/v100/logs/validation/20260806-192137-standard/pds-v100-vllm-019/pds-v100-vllm-019-standard.log
+0.21.0	pds-v100-vllm-021	standard	PASS	0.21.1.dev0+gad7125a43.d20260807	2.11.0+cu126	12.511725	1.95445	48	3072	24.5593	1571.7977	5.875	100.0	26334.0	52.32	35.0	PASS	/home/<USER>/build/v100/logs/validation/20260806-192137-standard/pds-v100-vllm-021/pds-v100-vllm-021-standard.log
