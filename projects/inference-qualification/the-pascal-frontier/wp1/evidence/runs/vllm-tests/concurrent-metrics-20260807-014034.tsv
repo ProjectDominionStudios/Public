@@ -1,0 +1,4 @@
+lane	vllm	torch	users	requests_per_user	total_requests	completed	failures	seconds	requests_per_s	output_tokens_per_s	latency_p50_s	latency_p95_s	latency_p99_s	output_tokens	peak_temp_c	avg_temp_c	avg_power_w	peak_power_w	avg_gpu_util_pct	peak_gpu_util_pct	result
+pds-v100-vllm-019	0.19.1.dev0+g2a69949bd.d20260807	2.10.0+cu126	100	20	2000	2000	0	62.9174	31.79	2277.59	0.4991	0.8403	0.8744	143300	41.0	37.2	67.0	102.7	55.5	87.0	PASS
+pds-v100-vllm-021	0.21.1.dev0+gad7125a43.d20260807	2.11.0+cu126	100	20	2000	2000	0	63.4782	31.51	2257.47	0.5027	0.8473	0.8890	143300	42.0	39.3	67.4	105.6	52.5	86.0	PASS
+pds-v100-vllm-023	0.23.1.dev0+g0fc695fc6.d20260807	2.11.0+cu126	100	20	2000	2000	0	63.0312	31.73	2273.48	0.4994	0.8383	0.8841	143300	42.0	39.6	66.3	102.5	52.8	85.0	PASS

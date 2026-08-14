@@ -1,0 +1,11 @@
+PDS V100 vLLM smoke-test summary
+Started: 2026-08-06T16:24:37-07:00
+Model: facebook/opt-125m
+Lanes: 019 021
+
+Lane	Result	Detail	Log
+pds-v100-vllm-019	FAIL	exit code 1	/home/<USER>/build/v100/logs/smoke-tests/pds-v100-vllm-019-20260806-162437.log
+pds-v100-vllm-021	FAIL	exit code 1	/home/<USER>/build/v100/logs/smoke-tests/pds-v100-vllm-021-20260806-162445.log
+
+Finished: 2026-08-06T16:24:55-07:00
+Failures: 2

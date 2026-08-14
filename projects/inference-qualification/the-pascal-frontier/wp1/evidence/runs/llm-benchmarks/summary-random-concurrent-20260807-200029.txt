@@ -1,0 +1,13 @@
+PDS V100 LLM Benchmark v1.0.0 | runtime=llamacpp | random-concurrent summary
+Started: 2026-08-07T20:00:29-07:00
+Runtime: llamacpp
+Model: /home/<USER>/models/qwen3.6-35b-a3b-v7-gguf/Hermes3.6-35B-A3B-Uncensored-Genesis-V7-APEX.gguf
+Model format: gguf
+Quantization: none
+Load format: gguf
+HF auth: none
+Baseline/cooldown: 5 samples x 1s; ready <= initial + 2 C; timeout 300s
+Heartbeat: 5s | client-start timeout: 30s
+Lanes: llamacpp
+
+Lane	Result	Detail	Log

@@ -1,0 +1,4 @@
+lane	vllm	torch	init_s	gen_s	output_tokens	requests_per_s	output_tokens_per_s	result
+pds-v100-vllm-019	0.19.1.dev0+g2a69949bd.d20260807	2.10.0+cu126	smoke	11.93	0.3411	3	96	8.80	281.46	34.0	32.4	0.0	50.4	PASS
+pds-v100-vllm-021	0.21.1.dev0+gad7125a43.d20260807	2.11.0+cu126	smoke	13.16	0.3478	3	96	8.63	276.05	35.0	34.3	0.0	43.8	PASS
+pds-v100-vllm-023	0.23.1.dev0+g0fc695fc6.d20260807	2.11.0+cu126	smoke	14.31	0.3509	3	96	8.55	273.60	36.0	35.0	0.0	41.2	PASS

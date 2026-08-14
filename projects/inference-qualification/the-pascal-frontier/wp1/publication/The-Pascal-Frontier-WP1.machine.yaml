@@ -1,0 +1,61 @@
+schema_version: "1.0"
+publication:
+  series: The Pascal Frontier
+  whitepaper: 1
+  title: Modern AI Inference on Hardware That Apparently Didn't Get the Retirement Memo
+  subtitle: vLLM vs. llama.cpp on NVIDIA V100 / Volta / SM70
+  version: "2.6"
+  status: published
+  founder_approved: true
+  approval_date: "2026-08-13"
+  author: J. Scott Henderson
+  organization: Project Dominion Studios
+  page_count: 28
+audience:
+  primary: engineers
+  accessibility_layer: family, friends, leaders, and curious non-specialists
+human_authority:
+  final_authority: J. Scott Henderson
+  responsibilities:
+    - scope selection
+    - evidence provision and interpretation
+    - guardrail review
+    - approval or rejection of changes
+    - final publication approval
+ai_assistance:
+  autonomous_approval: false
+  phases:
+    - model: ChatGPT 5.5 Instant
+      role: exploration, research, discussion, and drafting support
+    - model: Codex 5.6 Sol High
+      role: visual authority analysis, technical synthesis, and creative production
+    - model: Codex 5.6 Terra Medium
+      role: evidence collation, duplicate analysis, and transparency revision
+    - model: Codex 5.6 Sol Light
+      role: render QA, correction, packaging, and consistency checks
+artifacts:
+  pdf:
+    file: The-Pascal-Frontier-WP1.pdf
+    sha256: 1ba1acdfdc345102faed8daeded1f2fba02794c86980cc72c1f6e3713c674b95
+  docx:
+    file: The-Pascal-Frontier-WP1.docx
+    sha256: f64b3c1a0e963d3b946674175f31646c6fb202d4d2e5a2fd5863be10c33967c9
+quality_assurance:
+  pdf_pages_rendered: 28
+  pdf_pages_visually_inspected: 28
+  docx_page_images: 28
+  docx_package_integrity: pass
+  magenta_photo_wash_removed: true
+  founder_visual_review: approved
+evidence_projection:
+  public_files: 292
+  source_manifest_records: 378
+  unique_public_records: 289
+  exact_duplicates: 89
+  privacy_sanitized_records: 161
+  wp2_sglang_excluded: true
+canonical_corrections:
+  lurch_hostname_sync_pr: https://github.com/ProjectDominionStudios/ANTON-AOS/pull/28
+  lurch_hostname: lurch
+  samsung_ssd_980_installed_model_photo_verified: true
+  two_14_tb_hard_drives: founder_reported

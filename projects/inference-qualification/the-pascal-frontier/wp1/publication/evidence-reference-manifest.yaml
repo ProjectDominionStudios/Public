@@ -1,0 +1,48 @@
+schema_version: "1.0"
+publication: The Pascal Frontier WP1 v2.6
+status: published
+approval:
+  authority: J. Scott Henderson
+  date: "2026-08-13"
+  public_release_authorized: true
+evidence_projection:
+  directory: ../evidence
+  source_manifest: ../evidence/source-manifest.csv
+  claim_ledger: ../evidence/claim-ledger.csv
+  redaction_ledger: ../evidence/redaction-ledger.md
+  source_archive_sha256: 7438b39c74d6aa89b41d65c2f0ff0bef161aaa8f6970e5724bd9cced0838a9d6
+  candidate_records: 378
+  unique_public_records: 289
+  exact_duplicates: 89
+  privacy_sanitized_records: 161
+  corrected_archived_logs_zip_entries: 322
+  exclusions:
+    - SGLang evidence reserved for WP2
+    - private original archive containers
+    - unrelated drafts, selfies, and design inputs
+physical_references:
+  - file: ../images/01-lurch-dual-gpu-installation-cleaned.png
+    canonical_repository: ProjectDominionStudios/ANTON-AOS
+    canonical_path: operations/environments/home/lurch/assets/v100-installation/01-lurch-dual-gpu-installation-cleaned.png
+    sha256: cfbc3eca0fdfd0496f254862c879cf73d4b675605496e41a74805f68bb9b0b61
+    note: Assembled dual-GPU interior; visibly identifies the installed Samsung SSD 980.
+  - file: ../images/13-lurch-front-airflow-cleaned.png
+    canonical_repository: ProjectDominionStudios/ANTON-AOS
+    canonical_path: operations/environments/home/lurch/assets/v100-installation/13-lurch-front-airflow-cleaned.png
+    sha256: dbe6468586614ba9904da7a9d6649a35ba3de0c9ecd5c043e49d167116f44b97
+    note: Front-airflow reference with the 23.8 controller display preserved.
+claim_boundaries:
+  - The public evidence preserves observed results, errors, timestamps, versions, workloads, and metrics.
+  - No direct engine winner is claimed where workloads differ.
+  - Hidden hardware details are not inferred from photographs.
+  - The two 14 TB hard drives remain founder-reported rather than photo-verified.
+  - WP3 remains planned; no 35B vLLM result is fabricated.
+sanitization:
+  originals_modified: false
+  public_derivatives_created: true
+  technical_results_changed: false
+  redactions:
+    - personal usernames and home paths
+    - Windows profile paths
+    - RFC1918 private addresses
+  credential_material_intentionally_retained: false

@@ -1,0 +1,2 @@
+target	runtime_version	framework_version	users	requests_per_user	total_requests	completed	failures	seconds	requests_per_s	input_tokens_per_s	output_tokens_per_s	total_tokens_per_s	latency_p50_s	latency_p95_s	latency_p99_s	input_tokens	output_tokens	peak_temp_c	avg_temp_c	avg_power_w	peak_power_w	avg_gpu_util_pct	peak_gpu_util_pct	result
+pds-v100-llamacpp	version: 1 (3653e6d)	-	8	10	80	80	0	163.1493	0.49	390.23	58.98	449.20	15.4620	22.5791	25.1043	63665	9622	68.0	57.1	177.4	232.9	82.0	100.0	PASS

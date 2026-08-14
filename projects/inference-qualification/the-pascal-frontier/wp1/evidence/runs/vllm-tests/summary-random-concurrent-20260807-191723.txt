@@ -1,0 +1,16 @@
+PDS V100 vLLM random-concurrent summary
+Started: 2026-08-07T19:17:23-07:00
+Model: /home/<USER>/models/qwen3.6-35b-a3b-v7-gguf/Hermes3.6-35B-A3B-Uncensored-Genesis-V7-APEX.gguf
+Model format: gguf
+Quantization: none
+Load format: gguf
+HF auth: none
+Baseline/cooldown: 5 samples x 1s; ready <= initial + 2 C; timeout 300s
+Heartbeat: 5s | client-start timeout: 30s
+Lanes: 023
+
+Lane	Result	Detail	Log
+pds-v100-vllm-023	FAIL	server startup	/home/<USER>/build/v100/logs/vllm-tests/pds-v100-vllm-023-server-20260807-191727.log
+
+Finished: 2026-08-07T19:17:57-07:00
+Failures: 1

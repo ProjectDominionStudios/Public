@@ -1,0 +1,1 @@
+lane	vllm	torch	level	init_s	gen_s	requests	output_tokens	requests_per_s	output_tokens_per_s	peak_temp_c	avg_temp_c	peak_fan_pct	peak_power_w	avg_power_w	avg_gpu_util_pct	peak_gpu_util_pct	joules_per_1k_output_tokens	result
