@@ -1,0 +1,23 @@
+[
+  {
+    "source": "S04",
+    "samples": 133,
+    "peak_temp_c": 37.0,
+    "average_power_w_unrounded": 40.23045112781955,
+    "peak_power_w_unrounded": 101.49
+  },
+  {
+    "source": "S05",
+    "samples": 94,
+    "peak_temp_c": 37.0,
+    "average_power_w_unrounded": 41.318617021276594,
+    "peak_power_w_unrounded": 121.81
+  },
+  {
+    "source": "S06",
+    "samples": 94,
+    "peak_temp_c": 37.0,
+    "average_power_w_unrounded": 40.46829787234043,
+    "peak_power_w_unrounded": 104.78
+  }
+]

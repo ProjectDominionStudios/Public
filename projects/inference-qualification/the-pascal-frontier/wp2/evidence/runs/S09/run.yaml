@@ -1,0 +1,77 @@
+schema_version: 1
+run_id: "20260809-024916_sglang_qwen2.5-14b-instruct-gptq-int4_u1_r2"
+qualification:
+  series: "pds-v100-runtime-qualification"
+  dataset: "controlled-cross-runtime"
+  comparable_cross_runtime: true
+timestamps:
+  started: "2026-08-09T02:49:16-07:00"
+  finished: "2026-08-09T02:52:33-07:00"
+host:
+  hostname: "lurch"
+gpu:
+  model: "Tesla PG500-216"
+  driver_version: "580.173.02"
+  memory_mib: "32768"
+  compute_capability: "7.0"
+runtime:
+  name: "sglang"
+  version: ""
+  build_type: "community-v100-fork"
+  git_commit: "a5929c72ac2563e699017d30faa52e02b4793af1"
+  git_commit_summary: "a5929c72a merge: optimize Qwen3.6 35B FP16 MoE"
+environment:
+  python: "/home/OPERATOR/miniconda3/envs/sglang-v100/bin/python"
+  framework_version: ""
+  cuda_home: "/usr/local/cuda-12.8"
+model:
+  id: "Qwen/Qwen2.5-14B-Instruct-GPTQ-Int4"
+  format: "standard"
+  quantization: "gptq"
+  load_format: ""
+  context_length: 4096
+workload:
+  level: "concurrent"
+  users: 1
+  requests_per_user: 2
+  random_stress: false
+  random_seed: 42
+  input_tokens:
+    min: 64
+    max: 1024
+  output_tokens:
+    min: 16
+    max: 128
+results:
+  status: "FAIL"
+  failures: 1
+  throughput:
+    requests_per_second: null
+    input_tokens_per_second: null
+    output_tokens_per_second: null
+    total_tokens_per_second: null
+  latency_seconds:
+    p50: null
+    p95: null
+    p99: null
+telemetry:
+  baseline_temp_c: 26.50
+  baseline_power_w: 20.37
+  baseline_gpu_util_pct: 0.00
+  baseline_memory_mib: 0.00
+  peak_temp_c: null
+  avg_temp_c: null
+  peak_power_w: null
+  avg_power_w: null
+  avg_gpu_util_pct: null
+  peak_gpu_util_pct: null
+artifacts:
+  command: "command.txt"
+  environment: "environment.txt"
+  nvidia_smi: "nvidia-smi.txt"
+  pip_freeze: "pip-freeze.txt"
+  baseline: "baseline.csv"
+  summary: "summary.txt"
+  metrics: "metrics.tsv"
+  concurrent_metrics: "concurrent-metrics.tsv"
+  checksums: "sha256sum.txt"

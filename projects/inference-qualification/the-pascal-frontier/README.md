@@ -12,3 +12,7 @@ capability.
 The engineering comes first. The recurring characters, plain-English
 translations, and occasional smartassery make the evidence easier to follow;
 they do not replace it.
+
+## Whitepaper #2 — SGLang
+
+[Read WP2](wp2/) · [WP1 evidence](https://github.com/ProjectDominionStudios/Public/tree/main/projects/inference-qualification/the-pascal-frontier/wp1/evidence) · [WP2 evidence](https://github.com/ProjectDominionStudios/Public/tree/main/projects/inference-qualification/the-pascal-frontier/wp2/evidence)

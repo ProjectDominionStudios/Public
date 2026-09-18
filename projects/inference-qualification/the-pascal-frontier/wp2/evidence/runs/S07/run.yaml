@@ -1,0 +1,83 @@
+schema_version: 1
+run_id: "20260809-164028_sglang_qwen2.5-14b-instruct_u8_r10"
+qualification:
+  series: "pds-v100-runtime-qualification"
+  dataset: "controlled-cross-runtime"
+  comparable_cross_runtime: true
+timestamps:
+  started: "2026-08-09T16:40:28-07:00"
+  finished: "2026-08-09T16:42:24-07:00"
+host:
+  hostname: "lurch"
+gpu:
+  model: "Tesla PG500-216"
+  driver_version: "580.173.02"
+  memory_mib: "32768"
+  compute_capability: "7.0"
+runtime:
+  name: "sglang"
+  version: "0.0.0.dev13451+ga5929c72a"
+  build_type: "community-v100-fork"
+  git_commit: "a5929c72ac2563e699017d30faa52e02b4793af1"
+  git_commit_summary: "a5929c72a merge: optimize Qwen3.6 35B FP16 MoE"
+  sm70_jit_headroom_gb: 2.0
+  mem_fraction_static: 0.90
+environment:
+  python: "/home/OPERATOR/miniconda3/envs/sglang-v100/bin/python"
+  framework_version: "2.9.1+cu128"
+  cuda_home: "/usr/local/cuda-12.8"
+model:
+  id: "Qwen/Qwen2.5-14B-Instruct"
+  format: "standard"
+  quantization: ""
+  load_format: ""
+  context_length: 4096
+workload:
+  level: "concurrent"
+  users: 8
+  requests_per_user: 10
+  random_stress: false
+  random_seed: 42
+  input_tokens:
+    min: 64
+    max: 1024
+  output_tokens:
+    min: 16
+    max: 128
+results:
+  status: "PASS"
+  failures: 0
+  total_requests: 80
+  completed_requests: 80
+  request_failures: 0
+  elapsed_seconds: 18.4934
+  throughput:
+    requests_per_second: 4.33
+    input_tokens_per_second: 130.21
+    output_tokens_per_second: 138.43
+    total_tokens_per_second: 268.64
+  latency_seconds:
+    p50: 1.8052
+    p95: 2.1305
+    p99: 2.1328
+telemetry:
+  baseline_temp_c: 26.50
+  baseline_power_w: 20.27
+  baseline_gpu_util_pct: 0.00
+  baseline_memory_mib: 0.00
+  peak_temp_c: 53.0
+  avg_temp_c: 39.7
+  peak_power_w: 252.9
+  avg_power_w: 97.9
+  avg_gpu_util_pct: 45.2
+  peak_gpu_util_pct: 100.0
+artifacts:
+  command: "command.txt"
+  environment: "environment.txt"
+  nvidia_smi: "nvidia-smi.txt"
+  pip_freeze: "pip-freeze.txt"
+  baseline: "baseline.csv"
+  summary: "summary.txt"
+  metrics: "metrics.tsv"
+  concurrent_metrics: "concurrent-metrics.tsv"
+  checksums: "sha256sum.txt"

@@ -1,0 +1,23 @@
+PDS V100 LLM Benchmark v1.0.5 | runtime=sglang | concurrent summary
+Started: 2026-08-10T18:19:51-07:00
+Runtime: sglang
+Model: /home/OPERATOR/models/qwen3.6-35b-a3b-v7-gguf/Hermes3.6-35B-A3B-Uncensored-Genesis-V7-APEX.gguf
+Model format: gguf
+Quantization: none
+Load format: gguf
+SGLang tokenizer: Qwen/Qwen3.6-35B-A3B
+SGLang config file: /home/OPERATOR/pds-ai/config-overrides/qwen3.6-35b-a3b-text/config.json
+SGLang config parser: hf
+SGLang dtype override: none
+SGLang SM70 JIT headroom: 2.0 GB
+SGLang mem fraction static: 0.90
+HF auth: configured (/home/OPERATOR/.config/pds/huggingface.env)
+Baseline/cooldown: 5 samples x 1s; ready <= initial + 2 C; timeout 300s
+Heartbeat: 5s | client-start timeout: 30s
+Lanes: sglang
+
+Lane	Result	Detail	Log
+pds-v100-sglang	PASS	concurrent users=1 requests/user=2	/home/OPERATOR/build/v100/logs/llm-benchmark-archive/2026-08-10/20260810-181949_sglang_hermes3.6-35b-a3b-uncensored-genesis-v7-apex_u1_r2/pds-v100-sglang/client.log
+
+Finished: 2026-08-10T18:22:16-07:00
+Failures: 0

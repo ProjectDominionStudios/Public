@@ -1,0 +1,567 @@
+diff --git a/python/sglang/srt/configs/__init__.py b/python/sglang/srt/configs/__init__.py
+index 70b1c2ebc..6370e8152 100644
+--- a/python/sglang/srt/configs/__init__.py
++++ b/python/sglang/srt/configs/__init__.py
+@@ -28,7 +28,11 @@ from sglang.srt.configs.nano_nemotron_vl import (
+ )
+ from sglang.srt.configs.nemotron_h import NemotronHConfig, NemotronHPuzzleConfig
+ from sglang.srt.configs.olmo3 import Olmo3Config
+-from sglang.srt.configs.qwen3_5 import Qwen3_5Config, Qwen3_5MoeConfig
++from sglang.srt.configs.qwen3_5 import (
++    Qwen3_5Config,
++    Qwen3_5MoeConfig,
++    Qwen3_5MoeTextConfig,
++)
+ from sglang.srt.configs.qwen3_asr import Qwen3ASRConfig
+ from sglang.srt.configs.qwen3_next import Qwen3NextConfig
+ from sglang.srt.configs.step3_vl import (
+@@ -60,6 +64,7 @@ __all__ = [
+     "Qwen3NextConfig",
+     "Qwen3_5Config",
+     "Qwen3_5MoeConfig",
++    "Qwen3_5MoeTextConfig",
+     "InternS2PreviewConfig",
+     "DotsVLMConfig",
+     "DotsOCRConfig",
+diff --git a/python/sglang/srt/configs/qwen3_5.py b/python/sglang/srt/configs/qwen3_5.py
+index 98de12f7e..9cce5e13f 100644
+--- a/python/sglang/srt/configs/qwen3_5.py
++++ b/python/sglang/srt/configs/qwen3_5.py
+@@ -1,4 +1,5 @@
+ from transformers import PretrainedConfig
++from transformers.models.auto.configuration_auto import CONFIG_MAPPING
+ 
+ from sglang.srt.configs.qwen3_next import Qwen3NextConfig
+ from sglang.srt.configs.qwen3_vl import Qwen3VLVisionConfig
+@@ -136,3 +137,17 @@ class Qwen3_5MoeConfig(Qwen3_5Config):
+ 
+     def __init__(self, **kwargs):
+         super().__init__(**kwargs)
++
++# Register SGLang Qwen3.5 config classes with Transformers so
++# AutoConfig.from_pretrained() returns the SGLang implementations.
++for _model_type, _config_cls in (
++    ("qwen3_5", Qwen3_5Config),
++    ("qwen3_5_text", Qwen3_5TextConfig),
++    ("qwen3_5_moe", Qwen3_5MoeConfig),
++    ("qwen3_5_moe_text", Qwen3_5MoeTextConfig),
++):
++    CONFIG_MAPPING.register(
++        _model_type,
++        _config_cls,
++        exist_ok=True,
++    )
+diff --git a/python/sglang/srt/configs/qwen3_next.py b/python/sglang/srt/configs/qwen3_next.py
+index c3b950f30..159c892f5 100644
+--- a/python/sglang/srt/configs/qwen3_next.py
++++ b/python/sglang/srt/configs/qwen3_next.py
+@@ -236,6 +236,9 @@ class Qwen3NextConfig(PretrainedConfig):
+         self.attention_bias = attention_bias
+         self.attention_dropout = attention_dropout
+         self.head_dim = head_dim
++        # Preserve the checkpoint layer layout for compatibility with
++        # Transformers model construction (including the GGUF weight mapper).
++        self.layer_types = layer_types
+ 
+         # linear attention (gdn now part)
+         self.linear_conv_kernel_dim = linear_conv_kernel_dim
+diff --git a/python/sglang/srt/layers/quantization/gguf.py b/python/sglang/srt/layers/quantization/gguf.py
+index 5c1e7a63e..8183545e4 100644
+--- a/python/sglang/srt/layers/quantization/gguf.py
++++ b/python/sglang/srt/layers/quantization/gguf.py
+@@ -465,6 +465,9 @@ class GGUFMoEMethod(FusedMoEMethodBase):
+ 
+     def __init__(self, quant_config: GGUFConfig):
+         self.quant_config = quant_config
++        # GGUF uses its own expert execution path rather than a fused
++        # expert implementation, but apply() expects this attribute.
++        self.fused_experts = None
+ 
+     def create_weights(
+         self,
+@@ -528,6 +531,11 @@ class GGUFMoEMethod(FusedMoEMethodBase):
+         set_weight_attrs(w2_qweight_type, extra_weight_attrs)
+         layer.register_parameter("w2_qweight_type", w2_qweight_type)
+ 
++    def process_weights_after_loading(self, layer: torch.nn.Module):
++        """Materialize GGUF MoE weights after all expert shards are loaded."""
++        if hasattr(layer, "materialize_gguf_weights"):
++            layer.materialize_gguf_weights()
++
+     def create_moe_runner(
+         self, layer: torch.nn.Module, moe_runner_config: MoeRunnerConfig
+     ):
+diff --git a/python/sglang/srt/model_executor/model_runner.py b/python/sglang/srt/model_executor/model_runner.py
+index b8af96d53..dfa79c40a 100644
+--- a/python/sglang/srt/model_executor/model_runner.py
++++ b/python/sglang/srt/model_executor/model_runner.py
+@@ -50,6 +50,7 @@ from sglang.srt.configs import (
+     NemotronHConfig,
+     Qwen3_5Config,
+     Qwen3_5MoeConfig,
++    Qwen3_5MoeTextConfig,
+     Qwen3NextConfig,
+ )
+ from sglang.srt.configs.device_config import DeviceConfig
+@@ -2131,6 +2132,7 @@ class ModelRunner(ModelRunnerKVCacheMixin):
+             Qwen3NextConfig
+             | Qwen3_5Config
+             | Qwen3_5MoeConfig
++            | Qwen3_5MoeTextConfig
+             | InternS2PreviewConfig
+             | JetNemotronConfig
+             | JetVLMConfig,
+diff --git a/python/sglang/srt/model_loader/loader.py b/python/sglang/srt/model_loader/loader.py
+index 78db2a7f0..8e25ae88f 100644
+--- a/python/sglang/srt/model_loader/loader.py
++++ b/python/sglang/srt/model_loader/loader.py
+@@ -2073,6 +2073,8 @@ class GGUFModelLoader(BaseModelLoader):
+             model_type = "command-r"
+         elif model_type == "qwen3_moe":
+             model_type = "qwen3moe"
++        elif model_type == "qwen3_5_moe_text":
++            model_type = "qwen35moe"
+         arch = None
+         for key, value in gguf.MODEL_ARCH_NAMES.items():
+             if value == model_type:
+@@ -2088,9 +2090,32 @@ class GGUFModelLoader(BaseModelLoader):
+ 
+         gguf_to_hf_name_map = {}
+         for hf_name in state_dict:
++            # Qwen3.5 hybrid linear-attention has direct parameters such as
++            # A_log and dt_bias that do not follow the conventional
++            # module.weight / module.bias naming pattern.
++            if model_type == "qwen35moe":
++                gguf_name = name_map.get_name(hf_name)
++
++                if gguf_name is not None:
++                    gguf_to_hf_name_map[gguf_name] = hf_name
++                    continue
++
++                # llama.cpp/GGUF names Qwen3.5's linear-attention dt_bias
++                # tensor as blk.N.ssm_dt.bias, but the current gguf Python
++                # name map does not expose the HF dt_bias alias.
++                if hf_name.endswith(".linear_attn.dt_bias"):
++                    parts = hf_name.split(".")
++                    layer_id = parts[2]
++                    gguf_to_hf_name_map[
++                        f"blk.{layer_id}.ssm_dt.bias"
++                    ] = hf_name
++                    continue
++
+             name, suffix = hf_name.rsplit(".", 1)
+             gguf_name = name_map.get_name(name)
+-            gguf_to_hf_name_map[f"{gguf_name}.{suffix}"] = hf_name
++            if gguf_name is not None:
++                gguf_to_hf_name_map[f"{gguf_name}.{suffix}"] = hf_name
++
+         return gguf_to_hf_name_map
+ 
+     def _get_weights_iterator(
+diff --git a/python/sglang/srt/models/qwen3_5.py b/python/sglang/srt/models/qwen3_5.py
+index 9a95dd422..db62ae069 100644
+--- a/python/sglang/srt/models/qwen3_5.py
++++ b/python/sglang/srt/models/qwen3_5.py
+@@ -67,6 +67,8 @@ from sglang.srt.layers.quantization.base_config import QuantizationConfig
+ from sglang.srt.layers.radix_attention import RadixAttention
+ from sglang.srt.layers.radix_linear_attention import RadixLinearAttention
+ from sglang.srt.layers.rotary_embedding import get_rope
++from sglang.srt.layers.logits_processor import LogitsProcessor
++from sglang.srt.layers.vocab_parallel_embedding import ParallelLMHead
+ from sglang.srt.layers.utils import PPMissingLayer, get_layer_id
+ from sglang.srt.layers.vocab_parallel_embedding import VocabParallelEmbedding
+ from sglang.srt.model_executor.cuda_graph_runner import get_is_capture_mode
+@@ -286,7 +288,14 @@ class Qwen3_5GatedDeltaNet(nn.Module):
+ 
+     def _bind_packed_weight_loaders(self, module):
+         """Bind packed-checkpoint-aware loaders to all relevant params of a merged module."""
+-        for attr_name in ("weight", "weight_scale_inv", "weight_scale", "input_scale"):
++        for attr_name in (
++            "weight",
++            "weight_scale_inv",
++            "weight_scale",
++            "input_scale",
++            "qweight",
++            "qweight_type",
++        ):
+             param = getattr(module, attr_name, None)
+             if param is None:
+                 continue
+@@ -332,9 +341,17 @@ class Qwen3_5GatedDeltaNet(nn.Module):
+                 )
+ 
+                 if loaded_weight.numel() == 1:
+-                    # Single-element tensor (scalar or [1]):
+-                    # broadcast to each logical shard.
+-                    chunks = [loaded_weight.view(-1)] * len(loaded_shard_id)
++                    # GGUF qweight_type stores one scalar quantization type
++                    # per logical shard. Preserve scalar shape because the
++                    # GGUF merged loader copies into param.data[shard_id],
++                    # which is a 0-D tensor.
++                    if getattr(param, "is_gguf_weight_type", False):
++                        scalar = loaded_weight.reshape(())
++                        chunks = [scalar] * len(loaded_shard_id)
++                    else:
++                        # Other scalar-like packed parameters historically
++                        # expect a one-element tensor.
++                        chunks = [loaded_weight.view(-1)] * len(loaded_shard_id)
+                 else:
+                     split_dim = getattr(param, "output_dim", 0)
+                     if _is_cpu:
+@@ -1224,6 +1241,8 @@ class Qwen3_5ForCausalLM(nn.Module):
+                 continue
+             if "language_model" in name:
+                 name = name.replace(r"model.language_model.", r"model.")
++            if name.startswith("model."):
++                name = name[len("model."):]
+             if ".self_attn." in name:
+                 name = name.replace(".self_attn", "")
+             layer_id = get_layer_id(name)
+@@ -1277,7 +1296,7 @@ class Qwen3_5ForCausalLM(nn.Module):
+         )
+ 
+ 
+-class Qwen3_5MoeForCausalLM(Qwen3_5ForCausalLM):
++class Qwen3_5MoeModel(Qwen3_5ForCausalLM):
+     def __init__(
+         self,
+         config: Qwen3_5TextConfig,
+@@ -1359,6 +1378,12 @@ class Qwen3_5MoeForCausalLM(Qwen3_5ForCausalLM):
+         params_dict = dict(self.named_parameters(remove_duplicate=False))
+ 
+         for name, loaded_weight in weights:
++            # GGUF->HF mapping uses the top-level "model." namespace,
++            # but Qwen3_5MoeModel registers parameters directly
++            # as layers.*, embed_tokens.*, norm.*, etc.
++            if name.startswith("model."):
++                name = name[len("model."):]
++
+             if "rotary_emb.inv_freq" in name:
+                 continue
+             if "mtp" in name:
+@@ -1383,6 +1408,11 @@ class Qwen3_5MoeForCausalLM(Qwen3_5ForCausalLM):
+                     is_fused_expert = True
+                     expert_params_mapping = fused_expert_params_mapping
+ 
++                # GGUF may already provide fused parameter names. Avoid applying
++                # substring-based stacking twice (e.g. qkv_proj -> qkqkv_proj).
++                if param_name in name:
++                    continue
++
+                 # Skip non-stacked layers and experts (experts handled below).
+                 if weight_name not in name:
+                     continue
+@@ -1405,6 +1435,7 @@ class Qwen3_5MoeForCausalLM(Qwen3_5ForCausalLM):
+ 
+                 param = params_dict[name]
+                 weight_loader = param.weight_loader
++
+                 weight_loader(param, loaded_weight, shard_id)
+                 break
+             else:
+@@ -1419,6 +1450,13 @@ class Qwen3_5MoeForCausalLM(Qwen3_5ForCausalLM):
+                     # attempted to load as other weights later
+                     is_expert_weight = True
+                     name_mapped = name.replace(weight_name, param_name)
++
++                    # Qwen3.5 GGUF names are mapped through HF with a leading
++                    # "model." namespace, while this causal model registers
++                    # parameters directly under layers.*, embed_tokens.*, etc.
++                    if name_mapped.startswith("model."):
++                        name_mapped = name_mapped[len("model."):]
++
+                     if is_fused_expert:
+                         if "experts.gate_up_proj" in name:
+                             loaded_weight = loaded_weight.chunk(2, dim=-2)
+@@ -1451,6 +1489,15 @@ class Qwen3_5MoeForCausalLM(Qwen3_5ForCausalLM):
+                             and name_mapped not in params_dict
+                         ):
+                             continue
++
++                        # GGUF quantization metadata is emitted alongside real
++                        # weights but does not correspond to a model Parameter.
++                        if (
++                            name_mapped.endswith("_qweight_type")
++                            and name_mapped not in params_dict
++                        ):
++                            continue
++
+                         param = params_dict[name_mapped]
+                         # We should ask the weight loader to return success or
+                         # not here since otherwise we may skip experts with
+@@ -1479,6 +1526,25 @@ class Qwen3_5MoeForCausalLM(Qwen3_5ForCausalLM):
+                         weight_loader = getattr(
+                             param, "weight_loader", default_weight_loader
+                         )
++
++                        try:
++                            param_shape = tuple(param.shape)
++                        except RuntimeError:
++                            param_shape = None
++
++                        loaded_shape = tuple(loaded_weight.shape)
++
++                        if (
++                            param_shape is not None
++                            and loaded_shape != param_shape
++                            and loaded_weight.numel() == param.numel()
++                        ):
++                            squeezed_param_shape = tuple(
++                                dim for dim in param_shape if dim != 1
++                            )
++                            if loaded_shape == squeezed_param_shape:
++                                loaded_weight = loaded_weight.reshape(param_shape)
++
+                         weight_loader(param, loaded_weight)
+                     else:
+                         logger.warning(f"Parameter {name} not found in params_dict")
+@@ -1487,6 +1553,177 @@ class Qwen3_5MoeForCausalLM(Qwen3_5ForCausalLM):
+         return loaded_params
+ 
+ 
++
++class Qwen3_5MoeForCausalLM(nn.Module):
++    """Standalone Qwen3.5 MoE causal LM.
++
++    Qwen3_5MoeModel is the reusable transformer body and returns hidden
++    states. This wrapper owns the LM head and LogitsProcessor required by
++    SGLang's standalone generation path.
++    """
++
++    fall_back_to_pt_during_load = False
++
++    packed_modules_mapping = Qwen3_5MoeModel.packed_modules_mapping
++    supported_lora_modules = Qwen3_5MoeModel.supported_lora_modules
++
++    def __init__(
++        self,
++        config: Qwen3_5TextConfig,
++        quant_config: Optional[QuantizationConfig] = None,
++        prefix: str = "",
++    ) -> None:
++        super().__init__()
++
++        self.config = config
++        self.quant_config = quant_config
++        self.pp_group = get_pp_group()
++
++        self.model = Qwen3_5MoeModel(
++            config=config,
++            quant_config=quant_config,
++            prefix=add_prefix("model", prefix),
++        )
++
++        if self.pp_group.is_last_rank:
++            if (
++                self.pp_group.world_size == 1
++                and getattr(config, "tie_word_embeddings", False)
++            ):
++                self.lm_head = self.model.embed_tokens
++            else:
++                self.lm_head = ParallelLMHead(
++                    config.vocab_size,
++                    config.hidden_size,
++                    quant_config=quant_config,
++                    org_num_embeddings=config.vocab_size,
++                    prefix=add_prefix("lm_head", prefix),
++                    use_attn_tp_group=get_global_server_args().enable_dp_lm_head,
++                )
++        else:
++            self.lm_head = PPMissingLayer()
++
++        self.logits_processor = LogitsProcessor(config)
++
++    @property
++    def start_layer(self) -> int:
++        return self.model.start_layer
++
++    @property
++    def end_layer(self) -> int:
++        return self.model.end_layer
++
++    def get_hidden_dim(self, module_name: str, layer_idx: int):
++        return self.model.get_hidden_dim(module_name, layer_idx)
++
++    def get_input_embeddings(self):
++        return self.model.get_input_embeddings()
++
++    def get_embed_and_head(self):
++        embed = (
++            self.model.embed_tokens.weight
++            if self.pp_group.is_first_rank
++            else None
++        )
++        head = self.lm_head.weight if self.pp_group.is_last_rank else None
++        return embed, head
++
++    def set_embed_and_head(self, embed, head):
++        if self.pp_group.is_first_rank and embed is not None:
++            del self.model.embed_tokens.weight
++            self.model.embed_tokens.weight = embed
++
++        if self.pp_group.is_last_rank and head is not None:
++            if not getattr(self.config, "tie_word_embeddings", False):
++                del self.lm_head.weight
++            self.lm_head.weight = head
++
++        torch.cuda.empty_cache()
++        torch.cuda.synchronize()
++
++    @torch.no_grad()
++    def forward(
++        self,
++        input_ids: torch.Tensor,
++        positions: torch.Tensor,
++        forward_batch: ForwardBatch,
++        input_embeds: Optional[torch.Tensor] = None,
++        pp_proxy_tensors: Optional[PPProxyTensors] = None,
++        **kwargs,
++    ):
++        hidden_states = self.model(
++            input_ids=input_ids,
++            positions=positions,
++            forward_batch=forward_batch,
++            input_embeds=input_embeds,
++            pp_proxy_tensors=pp_proxy_tensors,
++        )
++
++        if not self.pp_group.is_last_rank:
++            return hidden_states
++
++        aux_hidden_states = None
++        if isinstance(hidden_states, tuple):
++            hidden_states, aux_hidden_states = hidden_states
++
++        return self.logits_processor(
++            input_ids,
++            hidden_states,
++            self.lm_head,
++            forward_batch,
++            aux_hidden_states,
++        )
++
++    def load_weights(self, weights: Iterable[Tuple[str, torch.Tensor]]):
++        """Load body weights through the existing Qwen3.5 MoE/GGUF loader.
++
++        LM-head tensors are kept at the wrapper level so the body retains its
++        existing flat parameter namespace and custom GGUF expert handling.
++        """
++
++        head_weights = []
++
++        def body_weights():
++            for name, loaded_weight in weights:
++                if name.startswith("lm_head."):
++                    head_weights.append((name, loaded_weight))
++                    continue
++                yield name, loaded_weight
++
++        loaded_params = self.model.load_weights(body_weights())
++
++        params_dict = dict(self.named_parameters(remove_duplicate=False))
++
++        for name, loaded_weight in head_weights:
++            if name not in params_dict:
++                logger.warning(f"Parameter {name} not found in params_dict")
++                continue
++
++            param = params_dict[name]
++            weight_loader = getattr(
++                param,
++                "weight_loader",
++                default_weight_loader,
++            )
++            weight_loader(param, loaded_weight)
++            loaded_params.add(name)
++
++        return loaded_params
++
++    @property
++    def routed_experts_weights_of_layer(self):
++        return LazyValue(
++            lambda: {
++                layer_id: layer.mlp.get_moe_weights()
++                for layer_id, layer in enumerate(self.model.layers)
++                if hasattr(layer.mlp, "get_moe_weights")
++            }
++        ).value
++
++    @classmethod
++    def get_model_config_for_expert_location(cls, config):
++        return Qwen3_5MoeModel.get_model_config_for_expert_location(config)
++
+ class Qwen3_5ForConditionalGeneration(Qwen3VLForConditionalGeneration):
+ 
+     packed_modules_mapping = Qwen3_5ForCausalLM.packed_modules_mapping
+@@ -1615,7 +1852,6 @@ class Qwen3_5ForConditionalGeneration(Qwen3VLForConditionalGeneration):
+                     name = name.replace(r"attn.qkv.", r"attn.qkv_proj.")
+                     name = name.replace(r"model.visual.", r"visual.")
+ 
+-                # print(name, loaded_weight.shape)
+                 # Skip loading extra bias for GPTQ models.
+                 if name.endswith(".bias") and name not in params_dict:
+                     continue
+@@ -1653,7 +1889,7 @@ class Qwen3_5MoeForConditionalGeneration(Qwen3VLForConditionalGeneration):
+         config: Qwen3_5MoeConfig,
+         quant_config: Optional[QuantizationConfig] = None,
+         prefix: str = "",
+-        language_model_cls=Qwen3_5MoeForCausalLM,
++        language_model_cls=Qwen3_5MoeModel,
+     ) -> None:
+         super().__init__(config, quant_config, prefix, language_model_cls)
+         rope_config = getattr(self.config, "rope_parameters", None) or getattr(
+@@ -2026,4 +2262,8 @@ class Qwen3_5MoeForConditionalGeneration(Qwen3VLForConditionalGeneration):
+         )
+ 
+ 
+-EntryClass = [Qwen3_5MoeForConditionalGeneration, Qwen3_5ForConditionalGeneration]
++EntryClass = [
++    Qwen3_5MoeForCausalLM,
++    Qwen3_5MoeForConditionalGeneration,
++    Qwen3_5ForConditionalGeneration,
++]
+diff --git a/python/sglang/srt/server_args.py b/python/sglang/srt/server_args.py
+index 3ed2bb400..e5d6280c6 100644
+--- a/python/sglang/srt/server_args.py
++++ b/python/sglang/srt/server_args.py
+@@ -2456,6 +2456,7 @@ class ServerArgs:
+             "Qwen3MoeForCausalLM",
+             "Qwen3VLMoeForConditionalGeneration",
+             "Qwen3NextForCausalLM",
++            "Qwen3_5MoeForCausalLM",
+             "Qwen3_5MoeForConditionalGeneration",
+             "InternS2PreviewForConditionalGeneration",
+             "Qwen3_5ForConditionalGeneration",
+@@ -2484,6 +2485,7 @@ class ServerArgs:
+ 
+             if model_arch in [
+                 "Qwen3NextForCausalLM",
++                "Qwen3_5MoeForCausalLM",
+                 "Qwen3_5MoeForConditionalGeneration",
+                 "InternS2PreviewForConditionalGeneration",
+                 "Qwen3_5ForConditionalGeneration",
+diff --git a/python/sglang/srt/utils/hf_transformers/config.py b/python/sglang/srt/utils/hf_transformers/config.py
+index f7eb00c4c..b5006161b 100644
+--- a/python/sglang/srt/utils/hf_transformers/config.py
++++ b/python/sglang/srt/utils/hf_transformers/config.py
+@@ -218,8 +218,18 @@ def get_config(
+                 "with GGUF inputs; only 'hf' (or 'auto') is supported."
+             )
+         _ensure_gguf_version()
+-        kwargs["gguf_file"] = model
+-        model = Path(model).parent
++
++        # For GGUF architectures that Transformers cannot parse directly
++        # (for example qwen35moe), allow an explicitly supplied native HF
++        # config to provide the architecture while the original GGUF remains
++        # the weight source.
++        override_config_file = kwargs.pop("_configuration_file", None)
++        if override_config_file:
++            model = str(Path(override_config_file).parent)
++        else:
++            kwargs["gguf_file"] = model
++            model = Path(model).parent
++
+         # Skip auto-resolution for GGUF: the name-based Mistral heuristic
+         # would misfire on the rewritten parent dir.
+         model_config_parser = "hf"

@@ -87,3 +87,7 @@ reviewed and approved.
 ---
 
 A **Project Dominion Studios** engineering project.
+
+## Whitepaper #2 — SGLang
+
+[Read WP2](the-pascal-frontier/wp2/) · [WP1 evidence](https://github.com/ProjectDominionStudios/Public/tree/main/projects/inference-qualification/the-pascal-frontier/wp1/evidence) · [WP2 evidence](https://github.com/ProjectDominionStudios/Public/tree/main/projects/inference-qualification/the-pascal-frontier/wp2/evidence)
