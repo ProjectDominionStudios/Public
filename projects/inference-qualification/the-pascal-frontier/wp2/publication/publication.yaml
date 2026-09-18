@@ -1,0 +1,22 @@
+schema_version: 1
+series: The Pascal Frontier
+whitepaper: 2
+title: SGLang on NVIDIA V100 SM70
+subtitle: Bringing up a 35B hybrid MoE and finding its serving boundary
+author: J. Scott Henderson
+status: approved_for_publication
+classification: derived
+release_approval: Scott_Henderson_explicit_publication_request
+pages: 22
+source_format: self_contained_editable_html
+wp1: https://github.com/ProjectDominionStudios/Public/tree/main/projects/inference-qualification/the-pascal-frontier/wp1
+evidence_window: 2026-08-09_to_2026-08-10
+new_experiments: false
+wp1_modified: false
+wp3_wp4_started: false
+claim_count: 45
+selected_run_integrity: 65_of_65_original_file_hashes_match
+known_integrity_exception: early_14B_GPTQ_failed_run_server_log
+
+approved_pdf_sha256: ad998056bacbe0bdda9dd75df387326f160a02cf711cb99d9f95f8d7bb3fa827
+web_edition: https://jscotthenderson.com/work/the-pascal-frontier/wp2/

@@ -1,0 +1,494 @@
+[
+  {
+    "source_id": "S04",
+    "run": "20260810-181949_sglang_hermes3.6-35b-a3b-uncensored-genesis-v7-apex_u1_r2",
+    "checks": [
+      {
+        "file": "./baseline.csv",
+        "expected": "bd2d783509f69241728ba940a659b2c9276bbb58d393bf37dcd840a7546a7d63",
+        "actual": "bd2d783509f69241728ba940a659b2c9276bbb58d393bf37dcd840a7546a7d63",
+        "pass": true
+      },
+      {
+        "file": "./command.txt",
+        "expected": "8efac6acc224a3792c68755fdc1c98b146db9fbdc44d0041186388e556c22e4e",
+        "actual": "8efac6acc224a3792c68755fdc1c98b146db9fbdc44d0041186388e556c22e4e",
+        "pass": true
+      },
+      {
+        "file": "./concurrent-metrics.tsv",
+        "expected": "716cad40cbe569939c96825401568478b83e1fc48bc2b1909ef1b6ef3083875b",
+        "actual": "716cad40cbe569939c96825401568478b83e1fc48bc2b1909ef1b6ef3083875b",
+        "pass": true
+      },
+      {
+        "file": "./environment.txt",
+        "expected": "a775a5847aac39db6999cc8fbce2ce2307a21a246100744d9befaeaccfabe590",
+        "actual": "a775a5847aac39db6999cc8fbce2ce2307a21a246100744d9befaeaccfabe590",
+        "pass": true
+      },
+      {
+        "file": "./metrics.tsv",
+        "expected": "f6f8be0386105f87530a4e1b2433e629d1e25c67911926a37af6379d51c7ae54",
+        "actual": "f6f8be0386105f87530a4e1b2433e629d1e25c67911926a37af6379d51c7ae54",
+        "pass": true
+      },
+      {
+        "file": "./nvidia-smi.txt",
+        "expected": "7a9a3cfc64e73082e7ff60b2f1b04afe1bb4a256a5430fabfaad8d49f77b4f46",
+        "actual": "7a9a3cfc64e73082e7ff60b2f1b04afe1bb4a256a5430fabfaad8d49f77b4f46",
+        "pass": true
+      },
+      {
+        "file": "./pds-v100-sglang/client.log",
+        "expected": "0dd46dae843317a29dcf26044579aa2c2cca41d0604b122ac106d759058acccf",
+        "actual": "0dd46dae843317a29dcf26044579aa2c2cca41d0604b122ac106d759058acccf",
+        "pass": true
+      },
+      {
+        "file": "./pds-v100-sglang/concurrent-client.py",
+        "expected": "1c3274c1618b402c3a1a8b76734e8b86c208a3d37fb894346a9b2172c64baadc",
+        "actual": "1c3274c1618b402c3a1a8b76734e8b86c208a3d37fb894346a9b2172c64baadc",
+        "pass": true
+      },
+      {
+        "file": "./pds-v100-sglang/server.log",
+        "expected": "79bff01717b59a1c30d4b7dc16955599fe6ee0f4359f7fd797536e27d8f2039f",
+        "actual": "79bff01717b59a1c30d4b7dc16955599fe6ee0f4359f7fd797536e27d8f2039f",
+        "pass": true
+      },
+      {
+        "file": "./pds-v100-sglang/thermal.csv",
+        "expected": "57d2b5566ed1533a19f7aa7790dd5c1a89e4ba8e730a18d4f6d5b418876c2e18",
+        "actual": "57d2b5566ed1533a19f7aa7790dd5c1a89e4ba8e730a18d4f6d5b418876c2e18",
+        "pass": true
+      },
+      {
+        "file": "./pip-freeze.txt",
+        "expected": "c0450d954ba7c94eeca52e698e0900454e061126d5bb87aad309b414cd8f4f74",
+        "actual": "c0450d954ba7c94eeca52e698e0900454e061126d5bb87aad309b414cd8f4f74",
+        "pass": true
+      },
+      {
+        "file": "./run.yaml",
+        "expected": "83c340327eafbf83328b0e0b1aef1a7f5b7c0d03835a93894a05677375df0bbb",
+        "actual": "83c340327eafbf83328b0e0b1aef1a7f5b7c0d03835a93894a05677375df0bbb",
+        "pass": true
+      },
+      {
+        "file": "./summary.txt",
+        "expected": "c029bacbe43dd4b20ff4e4a60bbab852f778c32019e33734dc40914f47a2fcdd",
+        "actual": "c029bacbe43dd4b20ff4e4a60bbab852f778c32019e33734dc40914f47a2fcdd",
+        "pass": true
+      }
+    ]
+  },
+  {
+    "source_id": "S05",
+    "run": "20260810-183326_sglang_hermes3.6-35b-a3b-uncensored-genesis-v7-apex_u2_r5",
+    "checks": [
+      {
+        "file": "./baseline.csv",
+        "expected": "443b99b2e77522cd34f94fdf97f3be6e546c8931e522f4f7c49df571795614a9",
+        "actual": "443b99b2e77522cd34f94fdf97f3be6e546c8931e522f4f7c49df571795614a9",
+        "pass": true
+      },
+      {
+        "file": "./command.txt",
+        "expected": "3a30278324434985a32be72df57bee475609580ad207e56db0e24540f8eea5f3",
+        "actual": "3a30278324434985a32be72df57bee475609580ad207e56db0e24540f8eea5f3",
+        "pass": true
+      },
+      {
+        "file": "./concurrent-metrics.tsv",
+        "expected": "9e66cc68f44d23c05e2e83acfe44663a2fead3987448a5556fd110ba8a92a50a",
+        "actual": "9e66cc68f44d23c05e2e83acfe44663a2fead3987448a5556fd110ba8a92a50a",
+        "pass": true
+      },
+      {
+        "file": "./environment.txt",
+        "expected": "af3042bc0dbcdd404ab5c290b0a37f6c186e3cec58ec75c58ae7ee1771754b7a",
+        "actual": "af3042bc0dbcdd404ab5c290b0a37f6c186e3cec58ec75c58ae7ee1771754b7a",
+        "pass": true
+      },
+      {
+        "file": "./metrics.tsv",
+        "expected": "f6f8be0386105f87530a4e1b2433e629d1e25c67911926a37af6379d51c7ae54",
+        "actual": "f6f8be0386105f87530a4e1b2433e629d1e25c67911926a37af6379d51c7ae54",
+        "pass": true
+      },
+      {
+        "file": "./nvidia-smi.txt",
+        "expected": "b005989f05750c6a9ad3d43cdb6b6bd5593296718a9204a146cc79f6d0c0153e",
+        "actual": "b005989f05750c6a9ad3d43cdb6b6bd5593296718a9204a146cc79f6d0c0153e",
+        "pass": true
+      },
+      {
+        "file": "./pds-v100-sglang/client.log",
+        "expected": "d363bfe8b4fb825ef9aff293ecc875ca9aed97496982d47669b90dfd0248054a",
+        "actual": "d363bfe8b4fb825ef9aff293ecc875ca9aed97496982d47669b90dfd0248054a",
+        "pass": true
+      },
+      {
+        "file": "./pds-v100-sglang/concurrent-client.py",
+        "expected": "1c3274c1618b402c3a1a8b76734e8b86c208a3d37fb894346a9b2172c64baadc",
+        "actual": "1c3274c1618b402c3a1a8b76734e8b86c208a3d37fb894346a9b2172c64baadc",
+        "pass": true
+      },
+      {
+        "file": "./pds-v100-sglang/server.log",
+        "expected": "1a9597123e50ba9eb4f7e01a028af23e844845406b94bd8d953b69b6a3555f1f",
+        "actual": "1a9597123e50ba9eb4f7e01a028af23e844845406b94bd8d953b69b6a3555f1f",
+        "pass": true
+      },
+      {
+        "file": "./pds-v100-sglang/thermal.csv",
+        "expected": "c7f0e5f349fe9f7bc76d39f70a3edb449ce4907f03b4e1c42daef1c9b3fa5be4",
+        "actual": "c7f0e5f349fe9f7bc76d39f70a3edb449ce4907f03b4e1c42daef1c9b3fa5be4",
+        "pass": true
+      },
+      {
+        "file": "./pip-freeze.txt",
+        "expected": "c0450d954ba7c94eeca52e698e0900454e061126d5bb87aad309b414cd8f4f74",
+        "actual": "c0450d954ba7c94eeca52e698e0900454e061126d5bb87aad309b414cd8f4f74",
+        "pass": true
+      },
+      {
+        "file": "./run.yaml",
+        "expected": "9211b2fcad67082e02b68836f3169f3411e13135cdcbd00a9e18a7a696b3fa4d",
+        "actual": "9211b2fcad67082e02b68836f3169f3411e13135cdcbd00a9e18a7a696b3fa4d",
+        "pass": true
+      },
+      {
+        "file": "./summary.txt",
+        "expected": "30220554475b7b757c70c9e43e59be8e8b0c7d7cc89614e885c946606fcf2b6c",
+        "actual": "30220554475b7b757c70c9e43e59be8e8b0c7d7cc89614e885c946606fcf2b6c",
+        "pass": true
+      }
+    ]
+  },
+  {
+    "source_id": "S06",
+    "run": "20260810-182907_sglang_hermes3.6-35b-a3b-uncensored-genesis-v7-apex_u4_r5",
+    "checks": [
+      {
+        "file": "./baseline.csv",
+        "expected": "bf9777046d03e13543eb8bb04fcfcdca6b2d1fca7fc1e6eeacdd6cf4d98c9094",
+        "actual": "bf9777046d03e13543eb8bb04fcfcdca6b2d1fca7fc1e6eeacdd6cf4d98c9094",
+        "pass": true
+      },
+      {
+        "file": "./command.txt",
+        "expected": "ba9b60d4c2a8b4cb28d51f203b316cbf3f513d48e28b9949724b34d70f4f7605",
+        "actual": "ba9b60d4c2a8b4cb28d51f203b316cbf3f513d48e28b9949724b34d70f4f7605",
+        "pass": true
+      },
+      {
+        "file": "./concurrent-metrics.tsv",
+        "expected": "d034c31e8fbcc9f50b5b66fec09353426c6b55b990a81a6dbf2193ff2d3ee905",
+        "actual": "d034c31e8fbcc9f50b5b66fec09353426c6b55b990a81a6dbf2193ff2d3ee905",
+        "pass": true
+      },
+      {
+        "file": "./environment.txt",
+        "expected": "81d1cc0ee30e3b9ddb290a4cc3bfaffd8779d3db7a3780119e91f2278312e97d",
+        "actual": "81d1cc0ee30e3b9ddb290a4cc3bfaffd8779d3db7a3780119e91f2278312e97d",
+        "pass": true
+      },
+      {
+        "file": "./metrics.tsv",
+        "expected": "f6f8be0386105f87530a4e1b2433e629d1e25c67911926a37af6379d51c7ae54",
+        "actual": "f6f8be0386105f87530a4e1b2433e629d1e25c67911926a37af6379d51c7ae54",
+        "pass": true
+      },
+      {
+        "file": "./nvidia-smi.txt",
+        "expected": "6d5966f781d9a95360ffc35357e43217eed83d3d3801e1425f107e86a2294e28",
+        "actual": "6d5966f781d9a95360ffc35357e43217eed83d3d3801e1425f107e86a2294e28",
+        "pass": true
+      },
+      {
+        "file": "./pds-v100-sglang/client.log",
+        "expected": "29ee873655cbffb980822b25b40c740fa6055b4534ebb70685303f4e032314a6",
+        "actual": "29ee873655cbffb980822b25b40c740fa6055b4534ebb70685303f4e032314a6",
+        "pass": true
+      },
+      {
+        "file": "./pds-v100-sglang/concurrent-client.py",
+        "expected": "1c3274c1618b402c3a1a8b76734e8b86c208a3d37fb894346a9b2172c64baadc",
+        "actual": "1c3274c1618b402c3a1a8b76734e8b86c208a3d37fb894346a9b2172c64baadc",
+        "pass": true
+      },
+      {
+        "file": "./pds-v100-sglang/server.log",
+        "expected": "831924412320b24921af29fc968ad80b7c24162fb75920b385bf4e520ad5cd78",
+        "actual": "831924412320b24921af29fc968ad80b7c24162fb75920b385bf4e520ad5cd78",
+        "pass": true
+      },
+      {
+        "file": "./pds-v100-sglang/thermal.csv",
+        "expected": "a19093a1deaef1f393ea936c85bae8e9497b3f71a433d4355803d73b15505ca3",
+        "actual": "a19093a1deaef1f393ea936c85bae8e9497b3f71a433d4355803d73b15505ca3",
+        "pass": true
+      },
+      {
+        "file": "./pip-freeze.txt",
+        "expected": "c0450d954ba7c94eeca52e698e0900454e061126d5bb87aad309b414cd8f4f74",
+        "actual": "c0450d954ba7c94eeca52e698e0900454e061126d5bb87aad309b414cd8f4f74",
+        "pass": true
+      },
+      {
+        "file": "./run.yaml",
+        "expected": "22b7823e645cfb859fa5f71b1c8691f85ea475ae031731f546a3fde4dd618d15",
+        "actual": "22b7823e645cfb859fa5f71b1c8691f85ea475ae031731f546a3fde4dd618d15",
+        "pass": true
+      },
+      {
+        "file": "./summary.txt",
+        "expected": "0fd708f247bb0c1e02635217b64d1751ef504d12d6e343b13aac5f3a4322740c",
+        "actual": "0fd708f247bb0c1e02635217b64d1751ef504d12d6e343b13aac5f3a4322740c",
+        "pass": true
+      }
+    ]
+  },
+  {
+    "source_id": "S07",
+    "run": "20260809-164028_sglang_qwen2.5-14b-instruct_u8_r10",
+    "checks": [
+      {
+        "file": "./baseline.csv",
+        "expected": "3b0ac236d471c317ac3406554adf11dfea58594e206dbbcb184ea153347a94ab",
+        "actual": "3b0ac236d471c317ac3406554adf11dfea58594e206dbbcb184ea153347a94ab",
+        "pass": true
+      },
+      {
+        "file": "./command.txt",
+        "expected": "88f1664ab171a47ab15137cabe55742166b20a3d4960053f955ed4955ae1ebcb",
+        "actual": "88f1664ab171a47ab15137cabe55742166b20a3d4960053f955ed4955ae1ebcb",
+        "pass": true
+      },
+      {
+        "file": "./concurrent-metrics.tsv",
+        "expected": "080691ff73d2298752441f9e912f5fc596e321d888bfed098c39ddcd17944cf4",
+        "actual": "080691ff73d2298752441f9e912f5fc596e321d888bfed098c39ddcd17944cf4",
+        "pass": true
+      },
+      {
+        "file": "./environment.txt",
+        "expected": "4de0d816e82d2386a5d6e50c48bce1747eedca3bbb6344b41a9cf5eda635fb40",
+        "actual": "4de0d816e82d2386a5d6e50c48bce1747eedca3bbb6344b41a9cf5eda635fb40",
+        "pass": true
+      },
+      {
+        "file": "./metrics.tsv",
+        "expected": "f6f8be0386105f87530a4e1b2433e629d1e25c67911926a37af6379d51c7ae54",
+        "actual": "f6f8be0386105f87530a4e1b2433e629d1e25c67911926a37af6379d51c7ae54",
+        "pass": true
+      },
+      {
+        "file": "./nvidia-smi.txt",
+        "expected": "7411c8b59670d424ac61dfcdebb40f056a990f334a04ed1b4e1197138b1de1a2",
+        "actual": "7411c8b59670d424ac61dfcdebb40f056a990f334a04ed1b4e1197138b1de1a2",
+        "pass": true
+      },
+      {
+        "file": "./pds-v100-sglang/client.log",
+        "expected": "5824f0180eaa90b3eeeb85bff119a4be9db07662983e4980b1b36298f11bd332",
+        "actual": "5824f0180eaa90b3eeeb85bff119a4be9db07662983e4980b1b36298f11bd332",
+        "pass": true
+      },
+      {
+        "file": "./pds-v100-sglang/concurrent-client.py",
+        "expected": "1c3274c1618b402c3a1a8b76734e8b86c208a3d37fb894346a9b2172c64baadc",
+        "actual": "1c3274c1618b402c3a1a8b76734e8b86c208a3d37fb894346a9b2172c64baadc",
+        "pass": true
+      },
+      {
+        "file": "./pds-v100-sglang/server.log",
+        "expected": "2e7f3c393c8ea729abcd0a28e4fe3a1410f232cbf907fd83993db9200969eaf1",
+        "actual": "2e7f3c393c8ea729abcd0a28e4fe3a1410f232cbf907fd83993db9200969eaf1",
+        "pass": true
+      },
+      {
+        "file": "./pds-v100-sglang/thermal.csv",
+        "expected": "c7a9b5f581f3ab011f53a7cfc06fcdec1004d513ece6500c5b2a2ed2a1c20dde",
+        "actual": "c7a9b5f581f3ab011f53a7cfc06fcdec1004d513ece6500c5b2a2ed2a1c20dde",
+        "pass": true
+      },
+      {
+        "file": "./pip-freeze.txt",
+        "expected": "eaf9e725959b16905bd1d4a493ca25e75339d14c1d7d863dcbc18052727e4dc7",
+        "actual": "eaf9e725959b16905bd1d4a493ca25e75339d14c1d7d863dcbc18052727e4dc7",
+        "pass": true
+      },
+      {
+        "file": "./run.yaml",
+        "expected": "4364399d0dbc193076618984a4e933c7a04e898613eddd4b9069dfbd6a6746d4",
+        "actual": "4364399d0dbc193076618984a4e933c7a04e898613eddd4b9069dfbd6a6746d4",
+        "pass": true
+      },
+      {
+        "file": "./summary.txt",
+        "expected": "a2d60dd052e68dde5df1aed6e8766e33e58166f5c3c0b56b5bc285646fa2c64b",
+        "actual": "a2d60dd052e68dde5df1aed6e8766e33e58166f5c3c0b56b5bc285646fa2c64b",
+        "pass": true
+      }
+    ]
+  },
+  {
+    "source_id": "S08",
+    "run": "20260809-171239_sglang_qwen2.5-32b-instruct-q4_k_m_u8_r10",
+    "checks": [
+      {
+        "file": "./baseline.csv",
+        "expected": "778fc584a9ef6c0fa29e9db296b1f1cf0fcc3cf5ef05c812b3832b48e7831400",
+        "actual": "778fc584a9ef6c0fa29e9db296b1f1cf0fcc3cf5ef05c812b3832b48e7831400",
+        "pass": true
+      },
+      {
+        "file": "./command.txt",
+        "expected": "a89d49d8fe8640ac88c4f69a8eca5588a73c5641aae211e115f32ae22e600951",
+        "actual": "a89d49d8fe8640ac88c4f69a8eca5588a73c5641aae211e115f32ae22e600951",
+        "pass": true
+      },
+      {
+        "file": "./concurrent-metrics.tsv",
+        "expected": "e39a9a8775361ddeef22d1c69a2e2180428a3373fbf3e2d9ea8e1b403f1611a2",
+        "actual": "e39a9a8775361ddeef22d1c69a2e2180428a3373fbf3e2d9ea8e1b403f1611a2",
+        "pass": true
+      },
+      {
+        "file": "./environment.txt",
+        "expected": "38cdba3d3f8e0a07c7616f2deb50bb89644697af67611ef103661ce53d9578ae",
+        "actual": "38cdba3d3f8e0a07c7616f2deb50bb89644697af67611ef103661ce53d9578ae",
+        "pass": true
+      },
+      {
+        "file": "./metrics.tsv",
+        "expected": "f6f8be0386105f87530a4e1b2433e629d1e25c67911926a37af6379d51c7ae54",
+        "actual": "f6f8be0386105f87530a4e1b2433e629d1e25c67911926a37af6379d51c7ae54",
+        "pass": true
+      },
+      {
+        "file": "./nvidia-smi.txt",
+        "expected": "2575d020115e8449d7c580e99134bc36ec152b4f81f5816da3c863a18e153dd3",
+        "actual": "2575d020115e8449d7c580e99134bc36ec152b4f81f5816da3c863a18e153dd3",
+        "pass": true
+      },
+      {
+        "file": "./pds-v100-sglang/client.log",
+        "expected": "b1ca2644ad9e29b7435bd070d1eeea4af9b02d3597c57e22687327a5e6464b4c",
+        "actual": "b1ca2644ad9e29b7435bd070d1eeea4af9b02d3597c57e22687327a5e6464b4c",
+        "pass": true
+      },
+      {
+        "file": "./pds-v100-sglang/concurrent-client.py",
+        "expected": "1c3274c1618b402c3a1a8b76734e8b86c208a3d37fb894346a9b2172c64baadc",
+        "actual": "1c3274c1618b402c3a1a8b76734e8b86c208a3d37fb894346a9b2172c64baadc",
+        "pass": true
+      },
+      {
+        "file": "./pds-v100-sglang/server.log",
+        "expected": "6ce94979b9b56cad335322c4dc271fdd63a8e3dcad0a3728bca28960d04a2d8f",
+        "actual": "6ce94979b9b56cad335322c4dc271fdd63a8e3dcad0a3728bca28960d04a2d8f",
+        "pass": true
+      },
+      {
+        "file": "./pds-v100-sglang/thermal.csv",
+        "expected": "22f3c8b7452d4a3ac4ec2629195814071e207de7ccd29a980efbe73b48c04f3e",
+        "actual": "22f3c8b7452d4a3ac4ec2629195814071e207de7ccd29a980efbe73b48c04f3e",
+        "pass": true
+      },
+      {
+        "file": "./pip-freeze.txt",
+        "expected": "eaf9e725959b16905bd1d4a493ca25e75339d14c1d7d863dcbc18052727e4dc7",
+        "actual": "eaf9e725959b16905bd1d4a493ca25e75339d14c1d7d863dcbc18052727e4dc7",
+        "pass": true
+      },
+      {
+        "file": "./run.yaml",
+        "expected": "1decc885d31390d59619766bd7200651b1a52f68e379c95128768b5b48942c93",
+        "actual": "1decc885d31390d59619766bd7200651b1a52f68e379c95128768b5b48942c93",
+        "pass": true
+      },
+      {
+        "file": "./summary.txt",
+        "expected": "bd94738f9bc34318ea50c6bc68047908e8ea9880a531aedf9aac8cf4ee6e8b5c",
+        "actual": "bd94738f9bc34318ea50c6bc68047908e8ea9880a531aedf9aac8cf4ee6e8b5c",
+        "pass": true
+      }
+    ]
+  },
+  {
+    "source_id": "S09",
+    "run": "20260809-024916_sglang_qwen2.5-14b-instruct-gptq-int4_u1_r2",
+    "checks": [
+      {
+        "file": "./baseline.csv",
+        "expected": "fa98db9106056871d7a166237119049365aadbca86580f6dc7b465c4698b72e8",
+        "actual": "fa98db9106056871d7a166237119049365aadbca86580f6dc7b465c4698b72e8",
+        "pass": true
+      },
+      {
+        "file": "./command.txt",
+        "expected": "78beb7ae09cd8874835ead2b3f26236c17c9cfb0dc0f80cf9fecae901f7b0e90",
+        "actual": "78beb7ae09cd8874835ead2b3f26236c17c9cfb0dc0f80cf9fecae901f7b0e90",
+        "pass": true
+      },
+      {
+        "file": "./concurrent-metrics.tsv",
+        "expected": "109117f04a541499b9b40224c829cc59b38c8745256aaf76642ae02162e3e9d5",
+        "actual": "109117f04a541499b9b40224c829cc59b38c8745256aaf76642ae02162e3e9d5",
+        "pass": true
+      },
+      {
+        "file": "./environment.txt",
+        "expected": "dbf217b99cc9ea571f8ab49a01136f4d1c2091f5ee7f2a68e54a3dc426ea854f",
+        "actual": "dbf217b99cc9ea571f8ab49a01136f4d1c2091f5ee7f2a68e54a3dc426ea854f",
+        "pass": true
+      },
+      {
+        "file": "./metrics.tsv",
+        "expected": "f6f8be0386105f87530a4e1b2433e629d1e25c67911926a37af6379d51c7ae54",
+        "actual": "f6f8be0386105f87530a4e1b2433e629d1e25c67911926a37af6379d51c7ae54",
+        "pass": true
+      },
+      {
+        "file": "./nvidia-smi.txt",
+        "expected": "6d981507ea1cb1d8f488d7b810830689100c139e1a7ccfb1facad1da12134aff",
+        "actual": "6d981507ea1cb1d8f488d7b810830689100c139e1a7ccfb1facad1da12134aff",
+        "pass": true
+      },
+      {
+        "file": "./pds-v100-sglang/server.log",
+        "expected": "55e029e9e285b3feef22018a4973b85d6458858fb62903df32bd9beff45026df",
+        "actual": "469ea914c67efc806d3236afa759f00f4c9aa2d5e56733ac54c18dd85483b90d",
+        "pass": false
+      },
+      {
+        "file": "./pds-v100-sglang/thermal.csv",
+        "expected": "00ef9443376e06124e16cdf4159b615ce8f7853133845445265e7d8132a1558f",
+        "actual": "00ef9443376e06124e16cdf4159b615ce8f7853133845445265e7d8132a1558f",
+        "pass": true
+      },
+      {
+        "file": "./pip-freeze.txt",
+        "expected": "eaf9e725959b16905bd1d4a493ca25e75339d14c1d7d863dcbc18052727e4dc7",
+        "actual": "eaf9e725959b16905bd1d4a493ca25e75339d14c1d7d863dcbc18052727e4dc7",
+        "pass": true
+      },
+      {
+        "file": "./run.yaml",
+        "expected": "986216dd763488d4d7402bcffb68171b2a76a9ce522dadf22dd1eb71616e8258",
+        "actual": "986216dd763488d4d7402bcffb68171b2a76a9ce522dadf22dd1eb71616e8258",
+        "pass": true
+      },
+      {
+        "file": "./summary.txt",
+        "expected": "3d46d9762c71bc414591dece37332e8c014023bf6784cb1887cf3b4e3ca54e3e",
+        "actual": "3d46d9762c71bc414591dece37332e8c014023bf6784cb1887cf3b4e3ca54e3e",
+        "pass": true
+      }
+    ]
+  }
+]

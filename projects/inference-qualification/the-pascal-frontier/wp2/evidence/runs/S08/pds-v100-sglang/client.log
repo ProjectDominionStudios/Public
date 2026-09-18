@@ -1,0 +1,11 @@
+CONCURRENT_RESULT:total=80|completed=80|failures=0|seconds=66.8193
+Concurrent requests/sec: 1.20
+Concurrent input tokens/sec: 36.04
+Concurrent output tokens/sec: 38.31
+Concurrent total tokens/sec: 74.35
+Latency p50: 5.4473 seconds
+Latency p95: 12.1226 seconds
+Latency p99: 12.1243 seconds
+Concurrent input tokens: 2408
+Concurrent output tokens: 2560
+CONCURRENT_TEST_RESULT=PASS

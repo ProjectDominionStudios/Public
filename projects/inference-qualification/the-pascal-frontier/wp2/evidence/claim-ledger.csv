@@ -1,0 +1,46 @@
+claim_id,claim,classification,sources,locator,pages,audit_disposition
+C01,WP2 continues the same platform and earlier engine investigation,CONTEXT,S01,"WP1 pp. 6,13-18,23",2,Supported with stated boundary
+C02,35B compatibility reached loading/cache/graph/API,DOCUMENTED + OBSERVED,"S02,S04",S02 sections 5-8; S04 server.log startup and HTTP lines,2,Supported with stated boundary
+C03,35B 1x2 PASS,OBSERVED,S04,client.log final result; run.yaml results,2,Supported with stated boundary
+C04,35B 2x5 and 4x5 FAIL,OBSERVED,"S05,S06",client.log and request-time server.log,2,Supported with stated boundary
+C05,Raw evidence outranks derivative narrative,EDITORIAL RULE,S11,Evidence and transparency,3,Supported with stated boundary
+C06,Human engineering and AI support roles,DOCUMENTED,"S02,S03",Authorship/disclosure; current production actions,4,Supported with stated boundary
+C07,Four commits form a verified parent-linked chain,VERIFIED CODE PROVENANCE,"S02,S04,S15",runs/S15/sglang-verified-history.txt; runs/S15/sglang-four-commit.diff,"4,7",Supported with stated boundary
+C08,Historical GPU/host/framework/driver envelope,OBSERVED + BASELINE,"S01,S02,S04,S12",S04 run.yaml gpu/environment; inherited host baseline,5,Supported with stated boundary
+C09,Installed version and final code HEAD differ in representation,OBSERVED,S04,run.yaml runtime.version/runtime.git_commit,5,Supported with stated boundary
+C10,Early 14B GPTQ startup failure and server hash mismatch,OBSERVED / INTEGRITY LIMIT,S09,summary.txt; run.yaml; original-integrity-audit.json,6,Supported with stated boundary
+C11,Selected 14B run 80/80 and 13 hash checks pass,OBSERVED,S07,client.log; run.yaml; original-integrity-audit.json,6,Supported with stated boundary
+C12,Selected 32B run 80/80 and 13 hash checks pass,OBSERVED,S08,client.log; run.yaml; original-integrity-audit.json,6,Supported with stated boundary
+C13,Four commit subjects and responsibilities,DOCUMENTED + VERIFIED CODE,"S02,S15",runs/S15/sglang-verified-history.txt; runs/S15/sglang-four-commit.diff,7,Supported with stated boundary
+C14,Explicit HF config with GGUF weight source,DOCUMENTED + OBSERVED COMMAND,"S02,S04",S02 section 5; S04 command.txt,8,Supported with stated boundary
+C15,Config class ownership/registration and model type,DOCUMENTED,S02,sections 4.3 and 5,8,Supported with stated boundary
+C16,40 layers: 30 GDN/linear and 10 full; IDs 3+4k,DOCUMENTED,S02,sections 4.3 and 5; diagram arithmetic 30+10=40,9,Supported with stated boundary
+C17,qwen35moe mapping and explicit dt_bias handling,DOCUMENTED,S02,section 5,10,Supported with stated boundary
+C18,Normalize model prefix against flat registered body names,DOCUMENTED,S02,section 5,10,Supported with stated boundary
+C19,Avoid double stacking already-fused names,DOCUMENTED,S02,section 5,10,Supported with stated boundary
+C20,Bind qweight/qweight_type and preserve scalar metadata,DOCUMENTED,S02,section 5,11,Supported with stated boundary
+C21,Guard singleton restoration by element count and squeezed shape,DOCUMENTED,S02,section 5,11,Supported with stated boundary
+C22,GGUF MoE fused_experts initialization and post-load materialization,DOCUMENTED,S02,section 5,11,Supported with stated boundary
+C23,Hybrid Mamba architecture integration and runtime cache,DOCUMENTED + OBSERVED,"S02,S04",S02 section 5; S04 server.log,12,Supported with stated boundary
+C24,"Body/wrapper split, ParallelLMHead, LogitsProcessor output",DOCUMENTED,S02,section 5,12,Supported with stated boundary
+C25,Final bring-up batches and 1.80s/0.98GB,DOCUMENTED,S02,section 8; underlying exact final bring-up transcript not independently located,13,Supported with stated boundary
+C26,Later PASS session capture 13.96s; memory 0.98GB; HTTP success,OBSERVED,S04,server.log lines 260-279,13,Supported with stated boundary
+C27,100120 token capacity and 18 running-request field are not load-test proof,OBSERVED + ANALYSIS,"S04,S05,S06",S04 server.log line 262; failed client workloads,13,Supported with stated boundary
+C28,35B elapsed/token counts/throughput,OBSERVED + ARITHMETIC,S04,client.log; 124/33.8610=3.662; 64/33.8610=1.890,14,Supported with stated boundary
+C29,"p50/p95/p99 are two-sample request latency, not TTFT",OBSERVED + METHOD,"S04,S13",client.log; generated client timers and pct,14,Supported with stated boundary
+C30,"32 output cap, zero think time, 4096 context, non-random workload",OBSERVED,"S04,S13",command.txt; run.yaml workload.random_stress=false; client request_shape,14,Supported with stated boundary
+C31,Failed client completion counts 0/10 and 0/20,OBSERVED,"S05,S06",client.log CONCURRENT_RESULT,14,Supported with stated boundary
+C32,Request-time Triton CUDA OOM and disconnect/refusal sequence,OBSERVED,"S05,S06",server.log late traceback; client.log initial errors,15,Supported with stated boundary
+C33,OOM keyword alone misclassifies logs with startup retries,OBSERVED + ANALYSIS,"S04,S05,S06",earlier tracebacks coexist with later readiness; S04 passes,15,Supported with stated boundary
+C34,Host-OOM exclusion and exact initiating allocation not independently proven,GAP / HYPOTHESIS,"S03,S05,S06",draft dmesg account; no kernel-log artifact independently verified,15,Explicit limitation; not upgraded to verified result
+C35,35B power and thermal table,OBSERVED / RECOMPUTED,"S04,S05,S06",thermal.csv means/maxima; concurrent-metrics.tsv rounded values,16,Supported with stated boundary
+C36,Sampling window spans startup through cleanup,METHOD,S10,lines 1042-1047 and 1294-1310,16,Supported with stated boundary
+C37,No efficiency/steady-state inference from short GPU-only samples,ANALYSIS,"S04,S05,S06,S10",monitoring scope and failed workloads,16,Supported with stated boundary
+C38,Earlier llama.cpp 35B client completion 80/80,OBSERVED CONTEXT,"S01,S14","S14 CONCURRENT_RESULT; WP1 referenced, not edited",17,Supported with stated boundary
+C39,Unlike workloads do not support a universal engine ranking,ANALYSIS,"S01,S04,S05,S06,S14",WP1 comparison contract; distinct workload evidence,17,Supported with stated boundary
+C40,35B compatibility achieved with narrow demonstrated serving envelope,CONCLUSION,"S02,S04,S05,S06",bounded synthesis,"18,22",Supported with stated boundary
+C41,Capability contracts and modular loader design recommended,ANALYSIS / PROPOSAL,"S02,S03",derived from failure-to-fix chain; not implemented here,18,Supported with stated boundary
+C42,Historical launch recipe,DOCUMENTED,"S02,S04",S02 section 7; local paths normalized,19,Supported with stated boundary
+C43,Model/config hashes and replication remain gaps,GAP,S04,"archive manifest covers run evidence, not established model/config content hashes",19,Explicit limitation; not upgraded to verified result
+C44,Audit dispositions and superseded statuses,AUDIT,"S02,S03,S04,S05,S06,S07,S08,S09",companion integrity and claim audits,20,Supported with stated boundary
+C45,Source provenance and remaining gaps,AUDIT,"S01,S02,S03,S04,S05,S06,S07,S08,S09,S10,S11,S12,S13,S14",source-manifest.csv,21,Supported with stated boundary

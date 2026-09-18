@@ -1,0 +1,87 @@
+schema_version: 1
+run_id: "20260810-183326_sglang_hermes3.6-35b-a3b-uncensored-genesis-v7-apex_u2_r5"
+qualification:
+  series: "pds-v100-runtime-qualification"
+  dataset: "controlled-cross-runtime"
+  comparable_cross_runtime: true
+timestamps:
+  started: "2026-08-10T18:33:26-07:00"
+  finished: "2026-08-10T18:35:06-07:00"
+host:
+  hostname: "lurch"
+gpu:
+  model: "Tesla PG500-216"
+  driver_version: "580.173.02"
+  memory_mib: "32768"
+  compute_capability: "7.0"
+runtime:
+  name: "sglang"
+  version: "-"
+  build_type: "community-v100-fork"
+  git_commit: "3231ec8a4e63f738486c6f013532327bda61624e"
+  git_commit_summary: "3231ec8a4 feat(qwen3.5): add standalone MoE causal LM wrapper"
+environment:
+  python: "/home/OPERATOR/miniconda3/envs/sglang-v100/bin/python"
+  framework_version: "-"
+  cuda_home: "/usr/local/cuda-12.8"
+model:
+  id: "/home/OPERATOR/models/qwen3.6-35b-a3b-v7-gguf/Hermes3.6-35B-A3B-Uncensored-Genesis-V7-APEX.gguf"
+  format: "gguf"
+  quantization: ""
+  load_format: "gguf"
+  tokenizer_path: "Qwen/Qwen3.6-35B-A3B"
+  config_file: "/home/OPERATOR/pds-ai/config-overrides/qwen3.6-35b-a3b-text/config.json"
+  model_config_parser: "hf"
+  dtype_override: ""
+  sm70_jit_headroom_gb: "2.0"
+  mem_fraction_static: "0.90"
+  context_length: 4096
+workload:
+  level: "concurrent"
+  users: 2
+  requests_per_user: 5
+  random_stress: false
+  random_seed: 42
+  input_tokens:
+    min: 64
+    max: 1024
+  output_tokens:
+    min: 16
+    max: 128
+results:
+  status: "FAIL"
+  failures: 1
+  total_requests: -
+  completed_requests: -
+  request_failures: -
+  elapsed_seconds: -
+  throughput:
+    requests_per_second: -
+    input_tokens_per_second: -
+    output_tokens_per_second: -
+    total_tokens_per_second: -
+  latency_seconds:
+    p50: -
+    p95: -
+    p99: -
+telemetry:
+  baseline_temp_c: 25.83
+  baseline_power_w: 20.14
+  baseline_gpu_util_pct: 0.00
+  baseline_memory_mib: 0.00
+  peak_temp_c: 37.0
+  avg_temp_c: 32.5
+  peak_power_w: 121.8
+  avg_power_w: 41.3
+  avg_gpu_util_pct: 16.9
+  peak_gpu_util_pct: 99.0
+artifacts:
+  command: "command.txt"
+  environment: "environment.txt"
+  nvidia_smi: "nvidia-smi.txt"
+  pip_freeze: "pip-freeze.txt"
+  baseline: "baseline.csv"
+  summary: "summary.txt"
+  metrics: "metrics.tsv"
+  concurrent_metrics: "concurrent-metrics.tsv"
+  checksums: "sha256sum.txt"

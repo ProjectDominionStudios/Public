@@ -1,0 +1,17 @@
+PDS V100 LLM Benchmark v1.0.3 | runtime=sglang | concurrent summary
+Started: 2026-08-09T02:49:18-07:00
+Runtime: sglang
+Model: Qwen/Qwen2.5-14B-Instruct-GPTQ-Int4
+Model format: standard
+Quantization: gptq
+Load format: auto
+HF auth: configured (/home/OPERATOR/.config/pds/huggingface.env)
+Baseline/cooldown: 5 samples x 1s; ready <= initial + 2 C; timeout 300s
+Heartbeat: 5s | client-start timeout: 30s
+Lanes: sglang
+
+Lane	Result	Detail	Log
+pds-v100-sglang	FAIL	server startup	/home/OPERATOR/build/v100/logs/llm-benchmark-archive/2026-08-09/20260809-024916_sglang_qwen2.5-14b-instruct-gptq-int4_u1_r2/pds-v100-sglang/server.log
+
+Finished: 2026-08-09T02:52:33-07:00
+Failures: 1

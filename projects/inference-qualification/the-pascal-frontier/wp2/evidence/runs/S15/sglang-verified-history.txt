@@ -1,0 +1,14 @@
+35b22351d0b719c54e98ee3e52d7b015c55a2ceb a5929c72ac2563e699017d30faa52e02b4793af1 feat(qwen3.5): add MoE text hybrid runtime support
+4d62142519c972104a8a81eaaae5c7c7a64ef87f 35b22351d0b719c54e98ee3e52d7b015c55a2ceb feat(gguf): add Qwen3.5 MoE config and tensor mapping
+4cebf0740652ce4f7abe49357144ac8ebc32a57b 4d62142519c972104a8a81eaaae5c7c7a64ef87f fix(gguf): support Qwen3.5 MoE packed quantized loading
+3231ec8a4e63f738486c6f013532327bda61624e 4cebf0740652ce4f7abe49357144ac8ebc32a57b feat(qwen3.5): add standalone MoE causal LM wrapper
+ python/sglang/srt/configs/__init__.py             |   7 +-
+ python/sglang/srt/configs/qwen3_5.py              |  15 ++
+ python/sglang/srt/configs/qwen3_next.py           |   3 +
+ python/sglang/srt/layers/quantization/gguf.py     |   8 +
+ python/sglang/srt/model_executor/model_runner.py  |   2 +
+ python/sglang/srt/model_loader/loader.py          |  27 ++-
+ python/sglang/srt/models/qwen3_5.py               | 256 +++++++++++++++++++++-
+ python/sglang/srt/server_args.py                  |   2 +
+ python/sglang/srt/utils/hf_transformers/config.py |  14 +-
+ 9 files changed, 322 insertions(+), 12 deletions(-)
