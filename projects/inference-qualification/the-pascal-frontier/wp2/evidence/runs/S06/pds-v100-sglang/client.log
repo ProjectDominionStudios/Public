@@ -1,0 +1,31 @@
+CLIENT_ERROR:user=1|request=1|RemoteDisconnected:Remote end closed connection without response
+CLIENT_ERROR:user=4|request=1|RemoteDisconnected:Remote end closed connection without response
+CLIENT_ERROR:user=2|request=1|RemoteDisconnected:Remote end closed connection without response
+CLIENT_ERROR:user=3|request=1|RemoteDisconnected:Remote end closed connection without response
+CLIENT_ERROR:user=1|request=2|URLError:<urlopen error [Errno 111] Connection refused>
+CLIENT_ERROR:user=3|request=2|URLError:<urlopen error [Errno 111] Connection refused>
+CLIENT_ERROR:user=4|request=2|URLError:<urlopen error [Errno 111] Connection refused>
+CLIENT_ERROR:user=2|request=2|URLError:<urlopen error [Errno 111] Connection refused>
+CLIENT_ERROR:user=1|request=3|URLError:<urlopen error [Errno 111] Connection refused>
+CLIENT_ERROR:user=3|request=3|URLError:<urlopen error [Errno 111] Connection refused>
+CLIENT_ERROR:user=1|request=4|URLError:<urlopen error [Errno 111] Connection refused>
+CLIENT_ERROR:user=2|request=3|URLError:<urlopen error [Errno 111] Connection refused>
+CLIENT_ERROR:user=4|request=3|URLError:<urlopen error [Errno 111] Connection refused>
+CLIENT_ERROR:user=1|request=5|URLError:<urlopen error [Errno 111] Connection refused>
+CLIENT_ERROR:user=3|request=4|URLError:<urlopen error [Errno 111] Connection refused>
+CLIENT_ERROR:user=2|request=4|URLError:<urlopen error [Errno 111] Connection refused>
+CLIENT_ERROR:user=4|request=4|URLError:<urlopen error [Errno 111] Connection refused>
+CLIENT_ERROR:user=3|request=5|URLError:<urlopen error [Errno 111] Connection refused>
+CLIENT_ERROR:user=2|request=5|URLError:<urlopen error [Errno 111] Connection refused>
+CLIENT_ERROR:user=4|request=5|URLError:<urlopen error [Errno 111] Connection refused>
+CONCURRENT_RESULT:total=20|completed=0|failures=20|seconds=7.6556
+Concurrent requests/sec: 0.00
+Concurrent input tokens/sec: 0.00
+Concurrent output tokens/sec: 0.00
+Concurrent total tokens/sec: 0.00
+Latency p50: 0.0000 seconds
+Latency p95: 0.0000 seconds
+Latency p99: 0.0000 seconds
+Concurrent input tokens: 0
+Concurrent output tokens: 0
+CONCURRENT_TEST_RESULT=FAIL
